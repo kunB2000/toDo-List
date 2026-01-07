@@ -1,10 +1,31 @@
 {
+  "name": "todo-list",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "webpack build",
+    "dev": "webpack server"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kunB2000/toDo-List.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/kunB2000/toDo-List/issues"
+  },
+  "homepage": "https://github.com/kunB2000/toDo-List#readme",
+  "description": "",
   "devDependencies": {
     "css-loader": "^7.1.2",
     "html-webpack-plugin": "^5.6.5",
     "style-loader": "^4.0.0",
     "webpack": "^5.104.1",
     "webpack-cli": "^6.0.1",
-    "webpack-dev-server": "^5.2.2"
+    "webpack-dev-server": "^5.2.2",
+    "webpack-plugin": "^1.0.5"
   }
 }
