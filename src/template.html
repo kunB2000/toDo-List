@@ -6,7 +6,8 @@
 </head>
 <body>
     <main>
-        <div class="project-side">
+        <!-- SIDEBAR -->
+        <aside class="project-side">
             <div class="days">
                 <h2 class="days-topic">🗓️ Days</h2>
                 <p class="day-font">Today</p>
@@ -15,25 +16,42 @@
             </div>
             <div class="projectSide-projects">
                 <h2 class="days-projects">🗄️ Tasks</h2>
-                <div class="days-project">
-                    <p class="days-project-topic">Gift</p>
-                    <p class="days-project-delete">🗑️</p>
+                <div class="days-project-container">
                 </div>
-                <div class="days-project">
-                    <p class="days-project-topic">Gift</p>
-                    <p class="days-project-delete">🗑️</p>
-                </div>
-                <input type="text" class="newProjectInput hidden">
+                <input type="text" class="newProjectInput hidden" placeholder="Project name...">
                 <button class="addProject">+ Add Project</button>
             </div>
-        </div>
+        </aside>
 
         <div class="toDoList">
             <h1>LET'S DO SOMETHING TODAT!</h1>
             <div class="tasks">
                 <h2 class="task-title">Upcoming</h2>
+                
             </div>
-            <div class=""></div>
+            <!-- TASK FORM -->
+            <div class="container-task hidden">
+                <div><input class="taskInput" type="text" placeholder="I want to..."></div>
+                <div>
+                    <span>by</span> 
+                    <input type="date" id="date">
+                </div>
+                <div>
+                    <select name="priority" id="priority">
+                        <option value="0">Low</option>
+                        <option value="2">High</option>
+                        <option value="1">Medium</option>
+                    </select>
+                </div>
+                <div>
+                    <textarea name="note" id="note" placeholder="Add Notes..."></textarea>
+                </div>
+                <div class="taskBtn">
+                    <button class="addToDo">Add to do</button>
+                    <button class="cancle">Cancel</button>
+                </div>
+            </div>
+            <!--  -->
             <button class="addTask">+ Add Task</button>
         </div>
     </main>

@@ -1,65 +1,65 @@
-import "./style.css"
+import "./style.css";
+import {addProjectEnter, renderProjects, getProjects} from "./addProject";
+import {createAndSaveTask, clearAddTask} from "./addTask";
+// import { addTaskEnter } from "./addTask";
 
-
-
-const dayFont = document.querySelectorAll('.day-font');
 const taskTitle = document.querySelector('.task-title');
-const daysProjectDelete = document.querySelectorAll('.days-project-delete');
-const addProjectBtn = document.querySelector('.addProject')
+const dayFont = document.querySelectorAll('.day-font');
 const newProjectInput = document.querySelector('.newProjectInput')
-const daysProject = document.querySelectorAll('.days-project')
-// const projectName = { name: 'Gift', number: 0 }
-
-
-function showTasks(e) {
-    taskTitle.textContent = e.textContent;
-}
-function deleteProject(e) {
-    e.parentElement.remove()
-}
-function addProjectBtnFunction() {
-    newProjectInput.classList.toggle('hidden');
-}
-function addProjectEnter() {
-    localStorage.setItem('Project', 'Alice');
-    const div = document.createElement('div');
-    div.innerHTML = `<p class="days-project-topic">${newProjectInput.value}</p>
-                    <p class="days-project-delete">🗑️</p>`
-    div.className = 'days-project'
-    daysProject[daysProject.length - 1].after(div);
-    newProjectInput.value = '';
-}
-
+const addTask = document.querySelector('.addTask');
+const containerTask = document.querySelector('.container-task');
+const addToDoBtn = document.querySelector('.addToDo');
+const cancel = document.querySelector('.cancle');
+// Side bar
 dayFont.forEach((e) => {
-    e.addEventListener('click', () => showTasks(e));
+    e.addEventListener('click', () => {
+        taskTitle.textContent = e.textContent;
+        console.log(taskTitle);
+        console.log(e.textContent);
+    });
 })
 
-daysProjectDelete.forEach((e) => {
-    e.addEventListener('click', () => deleteProject(e));
-})
+const initializeApp = () => {
+    const projects = getProjects();
+    
+    if (Object.keys(projects).length === 0) {
+        projects.Gift = [];
+        localStorage.setItem('Projects', JSON.stringify(projects));
+    }
 
-addProjectBtn.addEventListener('click', addProjectBtnFunction)
+    // Render existing projects
+    Object.keys(projects).forEach(renderProjects);
+};
 
-newProjectInput.addEventListener("keydown",  function(event) {
+document.querySelector('.addProject').addEventListener('click', () => {
+    newProjectInput.classList.toggle('hidden');
+    if (!newProjectInput.classList.contains('hidden')) {
+        newProjectInput.focus();
+    }
+});
+newProjectInput.addEventListener("keydown",  (event) => {
     if (event.key === "Enter") {
-        addProjectEnter()
+        addProjectEnter(newProjectInput.value)
+        newProjectInput.value = '';
+        // newProjectInput.classList.add('hidden');
     }
 });
 
-// 1. Storing data
-// localStorage.setItem('username', 'Alice');
-// localStorage.setItem('theme', 'dark');
+initializeApp();
 
-// 2. Retrieving data
-// const username = localStorage.getItem('username');
-// console.log(username); // Outputs: Alice
+// ADD TASK
+addTask.addEventListener('click', () => {
+    containerTask.classList.toggle('hidden');
+});
 
-// 3. Removing a specific item
-// localStorage.removeItem('theme');
+// Set default date to today
+window.addEventListener('DOMContentLoaded', (event) => {
+    date.value = new Date().toISOString().split('T')[0];;
+});
 
-// 4. Clearing all local storage data for the current domain
-// localStorage.clear(); 
+addToDoBtn.addEventListener('click', function() {
+    createAndSaveTask();
+    containerTask.classList.toggle('hidden');;
+})
 
-
-
-
+cancel.addEventListener('click', clearAddTask)

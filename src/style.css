@@ -1,39 +1,50 @@
+
 :root {
-    --head: #839d25;
-    --purple: #3F259D;
+    --head: #6b8e23;
+    --purple: #52307c;
+    --bg-light: #f4f7f6;
+    --white: #ffffff;
+    --transition: all 0.3s ease;
+    --shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
+    /* 4px 0 10px rgba(0,0,0,0.05) */
+    /* 2px 2px 2px 1px rgba(0, 0, 0, 0.2) */
+}
+
+* {
+    /* box-sizing: border-box; */
+}
+
+body {
+    font-family: system-ui, sans-serif;
+    margin: 0;
+    background-color: var(--bg-light);
 }
 
 main {
-    display: flex;
-}
-
-.project-side {
-    background-color: rgba(218, 218, 218, 0.744);
-    padding: 30px 120px 30px 30px;
-    box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
-    height: 91vh;
-    /* max-width: 100px; */
-}
-
-.days-projects, .days-topic {
-    color: var(--head);
-}
-
-.day-font {
-    padding: 10px;
     font-size: 20px;
+    display: flex;
+    min-height: 100vh;
 }
 
-.day-font:hover, .days-project:hover {
-    color: white;
-    background-color: var(--head);
+/* SIDEBAR */
+.project-side {
+    background-color: var(--white);
+    width: 260px;
+    padding: 20px;
+    box-shadow: 4px 0 10px rgba(0,0,0,0.05);
+    z-index: 10;
+}
+
+.project-side h2 {
+    color: var(--primary);
+}
+
+.day-font, .days-project {
+    padding: 10px;
+    border-radius: 8px; /* Rounded corners look modern */
+    transition: var(--transition);
+    margin-bottom: 5px;
     cursor: pointer;
-}
-
-.projectSide-projects {
-    display: grid;
-    grid-template-columns: 1fr;
-    justify-content: center;
 }
 
 .days-project {
@@ -42,8 +53,39 @@ main {
     align-items: center;
 }
 
-h1 {
-    color: var(--head)
+.day-font:hover, .days-project:hover {
+    background-color: #f0f4e1;
+    color: var(--head);
+}
+
+/* MAIN */
+.toDoList {
+    flex-grow: 1;
+    padding: 40px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+}
+  
+.days-projects, .days-topic, h1 {
+    color: var(--head);  
+}
+
+.projectSide-projects {
+    display: grid;
+    /* grid-template-columns: 1fr; */
+    /* justify-content: center; */
+}
+
+button {
+    font-size: 20px;
+    background: var(--purple);
+    cursor: pointer;
+}
+
+button:hover {
+    opacity: .9;
 }
 
 .tasks {
@@ -51,29 +93,12 @@ h1 {
     background-color: #d5e890;
     width: 70%;
     padding: 10px 30px 30px 30px;
-    box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
+    box-shadow: var(--shadow);
 }
 
 h2 {
     padding: 2px;
-    border-bottom: black 1px solid;
-}
-
-.toDoList {
-    width: 100vh;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 10px;
-}
-
-.addTask, .addProject {
-    color: white;
-    font-size: 20px;
-    background-color: var(--purple);
-    padding: 10px 30px;
-    border-radius: 15px;
-    border: none;
+    border-bottom: black 1.5px solid;
 }
 
 .addProject {
@@ -85,15 +110,119 @@ h2 {
     cursor: pointer;
 }
 
+.container-task {
+    margin-top: 20px;
+    background: var(--white);
+    padding: 20px;
+    border-radius: 12px;
+    height: 275px;
+    border: 2px black solid;
+    box-shadow: var(--shadow);
+}
+.container-task > div {
+    margin-top: 20px;
+}
+
+input {
+    font-size: 20px;    
+}
+textarea {
+    font-size: 20px;
+}
+
+.taskInput {
+    border: none;
+    border-bottom: 1px solid black;
+}
+
 .newProjectInput { 
     background-color: #dee2cfd5;
     height: 30px;
     border: none;
     border-radius: 10px;
-    box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
+    box-shadow: var(--shadow);
     padding: 5px 10px; 
 }
 
 .hidden {
     display: none;
+} 
+
+.taskBtn {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    max-height: 35px;
+    /* position: relative; */
+    margin: 10px;
 }
+
+.addTask, .addProject {
+    color: white;
+    background-color: var(--purple);
+    padding: 10px 30px;
+    border-radius: 15px;
+    border: none;
+}
+
+.addToDo, .cancle {
+    box-shadow: var(--shadow);
+}
+
+.addToDo:hover, .cancle:hover {
+    padding: 10px 11px;
+}
+
+.addToDo {
+    color: white;
+    background-color: black;
+    border: none;
+}
+.cancle {
+    background-color: white;
+    border: 1px solid black;
+}
+
+.boxChecktask {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 10px;
+}
+
+.checktask {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    border: 1px black solid;
+}
+
+.checktaskDate {
+    color: white;
+    background-color: black;
+}   
+
+.done {
+    color: gray;
+    text-decoration: line-through;
+    opacity: .5;
+}
+
+/*  */
+  
+  /* MAIN */
+  /* .task {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 12px;
+    margin-bottom: 10px;
+    background: var(--white);
+    border-radius: 8px;
+    box-shadow: var(--shadow);
+  }
+   */
+  
+
+
+  
